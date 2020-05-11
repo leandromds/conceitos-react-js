@@ -7,13 +7,13 @@ function App() {
   const [repository, setRepository] = useState([])
 
   useEffect(() => {
-   api.get('repository').then(response => {
+    api.get('repositories').then(response => {
      setRepository(response.data)
    })
   }, []);
 
   async function handleAddRepository() {
-    const response = await api.post('repository', {
+    const response = await api.post('repositories', {
       title: `Novo Projeto create in ${Date.now()}`,
       owner: "Leandro M Silva"
     })
@@ -23,7 +23,7 @@ function App() {
   }
 
   async function handleRemoveRepository(id) {
-    const response = await api.delete(`repository/${id}`)
+    const response = await api.delete(`repositories/${id}`)
 
     if (!response.status === '204') { return }
 
